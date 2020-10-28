@@ -1,0 +1,25 @@
+Project Requirements And Functions
+---------------------------------
+(for custom shop)
+  - item management
+  - user management
+  - order management
+
+  ** Sale Report Daily
+  ** Order Report Daily
+
+Database Structure
+------------------
+  - item
+    2- categories(name, photo)
+    3- subcategoreis (name, category_id)
+    1- brands (name, photo)
+    4- items (codeno, name, photo, price, discount, description, brand_id, subcategory_id)
+
+  - user
+    - roles
+    - users
+
+  - order
+    - order
+    - orderdetail
