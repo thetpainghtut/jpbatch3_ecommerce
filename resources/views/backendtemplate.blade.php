@@ -95,13 +95,13 @@
       <ul class="app-menu">
         <li><a class="app-menu__item" href="dashboard.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
         
-        <li><a class="app-menu__item active" href="{{route('brands.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Brands</span></a></li>
+        <li><a class="app-menu__item {{ Request::is('brands*') ? 'active' : '' }}" href="{{route('brands.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Brands</span></a></li>
 
-        <li><a class="app-menu__item" href="{{route('categories.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Categories</span></a></li>
+        <li><a class="app-menu__item {{ Request::is('categories*') ? 'active' : '' }}" href="{{route('categories.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Categories</span></a></li>
 
-        <li><a class="app-menu__item" href="{{route('subcategories.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Subcategories</span></a></li>
+        <li><a class="app-menu__item {{ Request::is('subcategories*') ? 'active' : '' }}" href="{{route('subcategories.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Subcategories</span></a></li>
 
-        <li><a class="app-menu__item" href="{{route('items.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Items</span></a></li>
+        <li><a class="app-menu__item {{ Request::is('items*') ? 'active' : '' }}" href="{{route('items.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Items</span></a></li>
       </ul>
     </aside>
     @yield('content')

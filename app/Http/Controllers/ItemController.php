@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use Illuminate\Http\Request;
+use App\Brand;
+use App\Subcategory;
 
 class ItemController extends Controller
 {
@@ -14,7 +16,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::all();
+        return view('backend.item.index',compact('items'));
     }
 
     /**
@@ -24,7 +27,9 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        $brands = Brand::all();
+        $subcategories = Subcategory::all();
+        return view('backend.item.create',compact('brands','subcategories'));
     }
 
     /**
@@ -35,7 +40,42 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        // Validation
+        $request->validate([
+            "name" => "required|min:5",
+            "price" => "required",
+            "discount" => "required",
+            "description" => "required|min:10",
+            "brand" => "required",
+            "subcategory" => "required",
+            "photo" => "required|mimes:jpeg,bmp,png", // a.jpg
+        ]);
+
+        // If include file, upload
+        if($request->file()) {
+            // 624872374523_a.jpg
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+            // itemimg/624872374523_a.jpg
+            $filePath = $request->file('photo')->storeAs('itemimg', $fileName, 'public');
+            $path = '/storage/'.$filePath;
+        }
+
+        // store
+        $item = new Item;
+        $item->codeno = uniqid();
+        $item->name = $request->name;
+        $item->photo = $path;
+        $item->price = $request->price;
+        $item->discount = $request->discount;
+        $item->description = $request->description;
+        $item->brand_id = $request->brand;
+        $item->subcategory_id = $request->subcategory;
+        $item->save();
+
+        // redirect
+        return redirect()->route('items.index');
     }
 
     /**
@@ -46,7 +86,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        return view('backend.item.show',compact('item'));
     }
 
     /**
