@@ -17,13 +17,17 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// Frontend
 Route::get('/', 'FrontendController@main')->name('mainpage');
+Route::get('itemdetail/{id}', 'FrontendController@itemdetail')->name('itemdetail');
+Route::get('cart', 'FrontendController@cart')->name('cartpage');
 
+Route::get('signin', 'FrontendController@signin')->name('signinpage');
+Route::get('signup', 'FrontendController@signup')->name('signuppage');
+
+// Backend
 Route::resource('brands', 'BrandController');
-
 Route::resource('categories', 'CategoryController');
-
 Route::resource('subcategories', 'SubcategoryController');
-
 Route::resource('items', 'ItemController');
 

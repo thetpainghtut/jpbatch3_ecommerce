@@ -44,33 +44,58 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-
-        <div class="row">
-          @foreach($items as $item)
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="{{asset($item->photo)}}" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">{{$item->name}}</a>
-                </h4>
-                <h5>{{$item->price}} MMK</h5>
-                <p class="card-text">{{$item->description}}</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-          @endforeach
-        </div>
-        <!-- /.row -->
-
       </div>
-      <!-- /.col-lg-9 -->
+    </div>
 
+    {{-- Show All Discount Items --}}
+    <div class="row my-3">
+      <div class="col-md-12">
+        <p>ပရိုမိုးရှင်းနောက်ဆုံးနေ့ပစ္စည်းများ</p>
+      </div>
+      @foreach($items as $item)
+      <div class="col-lg-3 col-md-6 my-4">
+        <div class="card h-100">
+          <a href="{{route('itemdetail',$item->id)}}"><img class="card-img-top" src="{{asset($item->photo)}}" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">{{$item->name}}</a>
+            </h4>
+            <h5>{{$item->price}} MMK</h5>
+            <p class="card-text">{{$item->description}}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+          </div>
+        </div>
+      </div>
+      @endforeach
     </div>
     <!-- /.row -->
 
+    {{-- Show all brands --}}
+    <div class="row my-5">
+      <div class="col-md-12">
+        <p>ရရှိနိုင်သည့်အမှတ်တံဆိပ်များ</p>
+      </div>
+      @foreach($brands as $brand)
+      <div class="col-md-2 my-3">
+        <img src="{{asset($brand->photo)}}" class="img-fluid" alt="">
+        <p class="text-center mt-2">{{$brand->name}}</p>
+      </div>
+      @endforeach
+    </div>
+
+    {{-- Show all categories --}}
+    <div class="row my-5">
+      <div class="col-md-12">
+        <p>အမျိုးအစားများ</p>
+      </div>
+      @foreach($categories as $category)
+      <div class="col-md-2 my-3">
+        <img src="{{asset($category->photo)}}" class="img-fluid" alt="">
+        <p class="text-center mt-2">{{$category->name}}</p>
+      </div>
+      @endforeach
+    </div>
   </div>
 @endsection

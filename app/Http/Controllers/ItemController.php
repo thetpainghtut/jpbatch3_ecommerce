@@ -48,17 +48,21 @@ class ItemController extends Controller
             "price" => "required",
             "discount" => "required",
             "description" => "required|min:10",
-            "brand" => "required",
+            "brand" => "required|exists:brands,id",
             "subcategory" => "required",
             "photo" => "required|mimes:jpeg,bmp,png", // a.jpg
-        ]);
-
+        ],
+        [
+            'brand.exists' => 'Not existing ID',
+        ]
+    );
         // If include file, upload
         if($request->file()) {
             // 624872374523_a.jpg
             $fileName = time().'_'.$request->photo->getClientOriginalName();
             // itemimg/624872374523_a.jpg
             $filePath = $request->file('photo')->storeAs('itemimg', $fileName, 'public');
+            
             $path = '/storage/'.$filePath;
         }
 

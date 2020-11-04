@@ -82,13 +82,17 @@
             <div class="form-group row">
               <label for="brand" class="col-sm-2 col-form-label">Brand:</label>
               <div class="col-sm-10">
-                <select name="brand" class="form-control" id="brand">
-                  <optgroup label="Choose Brand">
-                    @foreach($brands as $brand)
-                    <option value="{{$brand->id}}">{{$brand->name}}</option>
-                    @endforeach
-                  </optgroup>
+                <select name="brand" class="form-control @error('brand') is-invalid @enderror" id="brand">
+                  <option value="">Choose Brand..</option>
+                  @foreach($brands as $brand)
+                  <option value="{{$brand->id}}">{{$brand->name}}</option>
+                  @endforeach
                 </select>
+                @error('brand')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
               </div>
             </div>
 

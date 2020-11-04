@@ -30,18 +30,18 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="{{route('mainpage')}}">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="{{route('cartpage')}}">Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="{{route('signinpage')}}">Signin</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="{{route('signuppage')}}">Signup</a>
           </li>
         </ul>
       </div>
@@ -63,7 +63,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('frontend_asset/vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{ asset('frontend_asset/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
+  @yield('script')
 </body>
 
 </html>
