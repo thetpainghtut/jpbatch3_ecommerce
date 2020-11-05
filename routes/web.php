@@ -25,9 +25,14 @@ Route::get('cart', 'FrontendController@cart')->name('cartpage');
 Route::get('signin', 'FrontendController@signin')->name('signinpage');
 Route::get('signup', 'FrontendController@signup')->name('signuppage');
 
-// Backend
-Route::resource('brands', 'BrandController');
-Route::resource('categories', 'CategoryController');
-Route::resource('subcategories', 'SubcategoryController');
-Route::resource('items', 'ItemController');
+Route::middleware('role:admin')->group(function () {
+  // Backend
+  Route::resource('brands', 'BrandController');
+  Route::resource('categories', 'CategoryController');
+  Route::resource('subcategories', 'SubcategoryController');
+  Route::resource('items', 'ItemController');
+});
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

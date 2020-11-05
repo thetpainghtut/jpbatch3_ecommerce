@@ -16,8 +16,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="tile">
-          <h2 class="d-inline-block">Brand List</h2>
-          <a href="{{route('brands.create')}}" class="btn btn-info float-right">Add New</a>
+          <h2 class="d-inline-block">Category List</h2>
+          <a href="{{route('categories.create')}}" class="btn btn-info float-right">Add New</a>
           <table class="table mt-3 table-bordered dataTable">
             <thead>
               <tr>
@@ -30,14 +30,14 @@
               @php 
                 $i=1;
               @endphp
-              @foreach($brands as $row)
+              @foreach($categories as $row)
               <tr>
                 <td>{{$i++}}</td>
                 <td>{{$row->name}}</td>
                 <td>
-                  <a href="{{route('brands.edit',$row->id)}}" class="btn btn-warning">Edit</a>
-                  <a href="{{route('brands.show',$row->id)}}" class="btn btn-info">Show</a>
-                  <form method="post" action="{{route('brands.destroy',$row->id)}}" class="d-inline-block" onsubmit="return confirm('Are you Sure to Delete?')">
+                  <a href="{{route('categories.edit',$row->id)}}" class="btn btn-warning">Edit</a>
+                  <a href="{{route('categories.show',$row->id)}}" class="btn btn-info">Show</a>
+                  <form method="post" action="{{route('categories.destroy',$row->id)}}" class="d-inline-block" onsubmit="return confirm('Are you Sure to Delete?')">
                     @csrf
                     @method('DELETE')
                     <input type="submit" name="btnsubmit" value="Delete" class="btn btn-danger">

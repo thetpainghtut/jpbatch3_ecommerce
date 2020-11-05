@@ -1,6 +1,7 @@
 @extends('backendtemplate')
 
 @section('content')
+
   <main class="app-content">
     <div class="app-title">
       <div>
@@ -15,39 +16,37 @@
     <div class="row">
       <div class="col-md-12">
         <div class="tile">
-          <div class="title-header">
-            <h2 class="d-inline-block">Subcategory List</h2>
-            <a href="#" class="btn btn-primary float-right">Add New</a>
-          </div>
-          
-          <table class="table table-bordered dataTable">
+          <h2 class="d-inline-block">Subcategory List</h2>
+          <a href="{{route('subcategories.create')}}" class="btn btn-info float-right">Add New</a>
+          <table class="table mt-3 table-bordered dataTable">
             <thead>
               <tr>
                 <th>No</th>
                 <th>Name</th>
-                <th>Category Name</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              @php
+              @php 
                 $i=1;
               @endphp
               @foreach($subcategories as $row)
               <tr>
                 <td>{{$i++}}</td>
                 <td>{{$row->name}}</td>
-                <td>{{$row->category->name}}</td>
                 <td>
-                  <a href="#" class="btn btn-info">show</a>
-                  <a href="#" class="btn btn-warning">edit</a>
-                  <a href="#" class="btn btn-danger">delete</a>
+                  <a href="{{route('subcategories.edit',$row->id)}}" class="btn btn-warning">Edit</a>
+                  <a href="{{route('subcategories.show',$row->id)}}" class="btn btn-info">Show</a>
+                  <form method="post" action="{{route('subcategories.destroy',$row->id)}}" class="d-inline-block" onsubmit="return confirm('Are you Sure to Delete?')">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" name="btnsubmit" value="Delete" class="btn btn-danger">
+                  </form>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
-        
         </div>
       </div>
     </div>
@@ -55,8 +54,8 @@
 @endsection
 
 @section('script')
-  <script type="text/javascript" src="{{ asset('backend_asset/js/plugins/jquery.dataTables.min.js')}}"></script>
-  <script type="text/javascript" src="{{ asset('backend_asset/js/plugins/dataTables.bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('backend_asset/js/plugins/jquery.dataTables.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('backend_asset/js/plugins/dataTables.bootstrap.min.js')}}"></script>
   <script type="text/javascript">
     $('.dataTable').DataTable();
   </script>

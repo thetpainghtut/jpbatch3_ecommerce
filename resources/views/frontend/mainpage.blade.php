@@ -75,12 +75,12 @@
     {{-- Show all brands --}}
     <div class="row my-5">
       <div class="col-md-12">
-        <p>ရရှိနိုင်သည့်အမှတ်တံဆိပ်များ</p>
+        <p style="border-bottom: 2px solid green; padding-bottom: 5px;">ရရှိနိုင်သည့်အမှတ်တံဆိပ်များ</p>
       </div>
       @foreach($brands as $brand)
       <div class="col-md-2 my-3">
         <img src="{{asset($brand->photo)}}" class="img-fluid" alt="">
-        <p class="text-center mt-2">{{$brand->name}}</p>
+        {{-- <p class="text-center mt-2">{{$brand->name}}</p> --}}
       </div>
       @endforeach
     </div>
@@ -88,7 +88,7 @@
     {{-- Show all categories --}}
     <div class="row my-5">
       <div class="col-md-12">
-        <p>အမျိုးအစားများ</p>
+        <p style="border-bottom: 2px solid green; padding-bottom: 5px;">အမျိုးအစားများ</p>
       </div>
       @foreach($categories as $category)
       <div class="col-md-2 my-3">

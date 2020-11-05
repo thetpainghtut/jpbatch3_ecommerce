@@ -14,7 +14,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return view('backend.brand.index');
+        $brands = Brand::all();
+        return view('backend.brand.index',compact('brands'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.brand.create');
     }
 
     /**
@@ -35,7 +36,33 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        // Validation
+        $request->validate([
+            "name" => "required|min:5",
+            "photo" => "required|mimes:jpeg,bmp,png", // a.jpg
+        ]);
+
+        // if include file, upload
+        if($request->file()) {
+            // 624872374523_a.jpg
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+
+            // brandimg/624872374523_a.jpg
+            $filePath = $request->file('photo')->storeAs('brandimg', $fileName, 'public');
+
+            $path = '/storage/'.$filePath;
+        }
+
+        // store
+        $brand = new Brand;
+        $brand->name = $request->name;
+        $brand->photo = $path;
+        $brand->save();
+
+        // redirect
+        return redirect()->route('brands.index');
     }
 
     /**
@@ -46,7 +73,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return view('backend.brand.show',compact('brand'));
     }
 
     /**
@@ -57,7 +84,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('backend.brand.edit',compact('brand'));
     }
 
     /**
@@ -69,7 +96,37 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        // dd($request);
+
+        // Validation
+        $request->validate([
+            "name" => "required|min:5",
+            "photo" => "sometimes|required|mimes:jpeg,bmp,png", // a.jpg
+            "oldphoto" => "required"
+        ]);
+
+        // if include file, upload
+        if($request->file()) {
+            // delete olo photo
+
+            // 624872374523_a.jpg
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+
+            // brandimg/624872374523_a.jpg
+            $filePath = $request->file('photo')->storeAs('brandimg', $fileName, 'public');
+
+            $path = '/storage/'.$filePath;
+        }else{
+            $path = $request->oldphoto;
+        }
+
+        // update
+        $brand->name = $request->name;
+        $brand->photo = $path;
+        $brand->save();
+
+        // redirect
+        return redirect()->route('brands.index');
     }
 
     /**
@@ -80,6 +137,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        return redirect()->route('brands.index');
     }
 }
