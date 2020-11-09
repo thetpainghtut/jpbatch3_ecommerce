@@ -22,8 +22,8 @@ Route::get('/', 'FrontendController@main')->name('mainpage');
 Route::get('itemdetail/{id}', 'FrontendController@itemdetail')->name('itemdetail');
 Route::get('cart', 'FrontendController@cart')->name('cartpage');
 
-Route::get('signin', 'FrontendController@signin')->name('signinpage');
-Route::get('signup', 'FrontendController@signup')->name('signuppage');
+// Route::get('signin', 'FrontendController@signin')->name('signinpage');
+// Route::get('signup', 'FrontendController@signup')->name('signuppage');
 
 Route::middleware('role:admin')->group(function () {
   // Backend
@@ -36,3 +36,5 @@ Route::middleware('role:admin')->group(function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('orders','OrderController');

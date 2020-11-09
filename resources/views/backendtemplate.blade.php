@@ -106,6 +106,8 @@
         <li><a class="app-menu__item {{ Request::is('subcategories*') ? 'active' : '' }}" href="{{route('subcategories.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Subcategories</span></a></li>
 
         <li><a class="app-menu__item {{ Request::is('items*') ? 'active' : '' }}" href="{{route('items.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Items</span></a></li>
+
+        <li><a class="app-menu__item {{ Request::is('orders*') ? 'active' : '' }}" href="{{route('orders.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Orders</span></a></li>
       </ul>
     </aside>
     @yield('content')

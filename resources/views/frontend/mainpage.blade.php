@@ -6,11 +6,10 @@
 
       <div class="col-lg-3">
 
-        <h1 class="my-4">Shop Name</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
+        <div class="list-group my-4">
+          @foreach($categories as $category)
+            <a href="#" class="list-group-item">{{$category->name}}</a>
+          @endforeach
         </div>
 
       </div>
@@ -26,13 +25,13 @@
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+              <img class="d-block img-fluid" src="{{asset('frontend_asset/images/banner1.jpg')}}" alt="First slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+              <img class="d-block img-fluid" src="{{asset('frontend_asset/images/banner2.jpg')}}" alt="Second slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+              <img class="d-block img-fluid" src="{{asset('frontend_asset/images/banner3.jpg')}}" alt="Third slide">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -64,7 +63,8 @@
             <p class="card-text">{{$item->description}}</p>
           </div>
           <div class="card-footer">
-            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            <input type="hidden" name="qty" class="qty" value="1">
+            <a href="#" class="btn btn-dark addToCart" data-id="{{$item->id}}" data-name="{{$item->name}}" data-photo="{{$item->photo}}" data-price="{{$item->price}}">Add to Cart</a>
           </div>
         </div>
       </div>
@@ -98,4 +98,13 @@
       @endforeach
     </div>
   </div>
+@endsection
+
+@section('script')
+  <script type="text/javascript" src="{{asset('frontend_asset/js/custom.js')}}"></script>
+  <script type="text/javascript">
+    $(document).ready(function (argument) {
+      
+    })
+  </script>
 @endsection

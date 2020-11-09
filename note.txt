@@ -21,5 +21,16 @@ Database Structure
     - users
 
   - order
-    - order
-    - orderdetail
+    - order (id, voucherno, orderdate, total, user_id, status)
+    - orderdetail (id, order_id, item_id, qty) / no model
+
+0000000338288383      Date: 09-11-2020
+--------------------------------------
+Qty       item       price      subtotal
+---------------------------------------
+5         hello       2,000      10,000
+1         two         4,000       4,000
+---------------------------------------
+Total                   :        14,000
+
+
