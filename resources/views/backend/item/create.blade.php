@@ -111,6 +111,18 @@
             </div>
 
             <div class="form-group row">
+              <label for="detail" class="col-sm-2 col-form-label">Item Details:</label>
+              <div class="col-sm-10">
+                <textarea name="detail" class="form-control @error('detail') is-invalid @enderror" id="summernote"></textarea>
+                @error('detail')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
+            </div>
+
+            <div class="form-group row">
               <div class="col-sm-10 col-offset-sm-2">
                 <input type="submit" name="btnsubmit" value="Save" class="btn btn-success">
               </div>
@@ -124,9 +136,11 @@
 @endsection
 
 @section('script')
-  <script type="text/javascript" src="{{ asset('backend_asset/js/plugins/jquery.dataTables.min.js')}}"></script>
-  <script type="text/javascript" src="{{ asset('backend_asset/js/plugins/dataTables.bootstrap.min.js')}}"></script>
   <script type="text/javascript">
-    $('.dataTable').DataTable();
+    $('#summernote').summernote({
+      placeholder: 'Item Detail..',
+      tabsize: 4,
+      height: 100
+    });
   </script>
 @endsection

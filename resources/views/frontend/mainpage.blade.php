@@ -77,12 +77,22 @@
       <div class="col-md-12">
         <p style="border-bottom: 2px solid green; padding-bottom: 5px;">ရရှိနိုင်သည့်အမှတ်တံဆိပ်များ</p>
       </div>
-      @foreach($brands as $brand)
-      <div class="col-md-2 my-3">
+      
+      {{-- @foreach($brands as $brand)
+      <div class="col-md-2 col-sm-3 col-4 my-3">
         <img src="{{asset($brand->photo)}}" class="img-fluid" alt="">
-        {{-- <p class="text-center mt-2">{{$brand->name}}</p> --}}
+        <p class="text-center mt-2">{{$brand->name}}</p>
       </div>
-      @endforeach
+      @endforeach --}}
+
+      <div class="owl-carousel owl-theme">
+        @foreach($brands as $brand)
+        <div class="item">
+          <img src="{{asset($brand->photo)}}" class="img-fluid" alt="">
+        </div>
+        @endforeach
+      </div>
+
     </div>
 
     {{-- Show all categories --}}
@@ -91,12 +101,14 @@
         <p style="border-bottom: 2px solid green; padding-bottom: 5px;">အမျိုးအစားများ</p>
       </div>
       @foreach($categories as $category)
-      <div class="col-md-2 my-3">
+      <div class="col-md-2 col-sm-3 col-4 my-3">
         <img src="{{asset($category->photo)}}" class="img-fluid" alt="">
         <p class="text-center mt-2">{{$category->name}}</p>
       </div>
       @endforeach
     </div>
+
+    
   </div>
 @endsection
 
@@ -104,7 +116,24 @@
   <script type="text/javascript" src="{{asset('frontend_asset/js/custom.js')}}"></script>
   <script type="text/javascript">
     $(document).ready(function (argument) {
-      
+      $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        nav:true,
+        autoplay:true,
+        autoplayTimeout:2000,
+        responsive:{
+            0:{
+                items:3
+            },
+            600:{
+                items:4
+            },
+            1000:{
+                items:6
+            }
+        }
+      })
     })
   </script>
 @endsection

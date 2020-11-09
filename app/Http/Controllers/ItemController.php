@@ -51,6 +51,7 @@ class ItemController extends Controller
             "brand" => "required|exists:brands,id",
             "subcategory" => "required",
             "photo" => "required|mimes:jpeg,bmp,png", // a.jpg
+            "detail" => "required"
         ],
         [
             'brand.exists' => 'Not existing ID',
@@ -74,6 +75,7 @@ class ItemController extends Controller
         $item->price = $request->price;
         $item->discount = $request->discount;
         $item->description = $request->description;
+        $item->detail = $request->detail;
         $item->brand_id = $request->brand;
         $item->subcategory_id = $request->subcategory;
         $item->save();

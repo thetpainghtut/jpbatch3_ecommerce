@@ -21,6 +21,10 @@
       background-color: #b27832 !important;
     }
   </style>
+
+  {{-- owl carousel --}}
+  <link rel="stylesheet" href="{{ asset('frontend_asset/owlcarousel/dist/assets/owl.carousel.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('frontend_asset/owlcarousel/dist/assets/owl.theme.default.min.css')}}">
 </head>
 
 <body>
@@ -90,6 +94,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('frontend_asset/vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{ asset('frontend_asset/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ asset('frontend_asset/owlcarousel/dist/owl.carousel.min.js')}}"></script>
   @yield('script')
 </body>
 
