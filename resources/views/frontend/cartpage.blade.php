@@ -89,7 +89,7 @@
           $.post("{{route('orders.store')}}",{ls:order,notes:notes},function (response) {
             // alert(response.msg);
             localStorage.clear();
-            location.href="/";
+            location.href="{{route('mainpage')}}"; // uri
           })
           e.preventDefault();
         }

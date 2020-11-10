@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use Illuminate\Http\Request;
 use Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
@@ -69,7 +70,9 @@ class OrderController extends Controller
             $order->items()->attach($row->id,['qty'=>$row->qty]);
         }
 
-        return redirect()->route('mainpage');
+        Alert::success('Complete', 'Your Order Successful!');
+
+        // return redirect()->route('mainpage');
     }
 
     /**

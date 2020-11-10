@@ -28,11 +28,11 @@
 </head>
 
 <body>
-
+  @include('sweetalert::alert')
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-main fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Furniture Shop</a>
+      <a class="navbar-brand" href="{{route('mainpage')}}">Furniture Shop</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
