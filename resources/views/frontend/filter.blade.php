@@ -42,53 +42,18 @@
       </div>
     </div>
 
-    {{-- Show All Discount Items --}}
+    {{-- Show Filter Items --}}
     <div class="row my-3">
+      @if(count($items))
       <div class="col-md-12">
-        <p>ပရိုမိုးရှင်းနောက်ဆုံးနေ့ပစ္စည်းများ</p>
+        <p>{{$items[0]->subcategory->name}}</p>
       </div>
       @foreach($items as $item)
         <x-item-component :item=$item></x-item-component>
       @endforeach
+      @endif
     </div>
     <!-- /.row -->
-
-    {{-- Show all brands --}}
-    <div class="row my-5">
-      <div class="col-md-12">
-        <p style="border-bottom: 2px solid green; padding-bottom: 5px;">ရရှိနိုင်သည့်အမှတ်တံဆိပ်များ</p>
-      </div>
-      
-      {{-- @foreach($brands as $brand)
-      <div class="col-md-2 col-sm-3 col-4 my-3">
-        <img src="{{asset($brand->photo)}}" class="img-fluid" alt="">
-        <p class="text-center mt-2">{{$brand->name}}</p>
-      </div>
-      @endforeach --}}
-
-      <div class="owl-carousel owl-theme">
-        @foreach($brands as $brand)
-        <div class="item">
-          <img src="{{asset($brand->photo)}}" class="img-fluid" alt="">
-        </div>
-        @endforeach
-      </div>
-
-    </div>
-
-    {{-- Show all categories --}}
-    <div class="row my-5">
-      <div class="col-md-12">
-        <p style="border-bottom: 2px solid green; padding-bottom: 5px;">အမျိုးအစားများ</p>
-      </div>
-      @foreach($categories as $category)
-      <div class="col-md-2 col-sm-3 col-4 my-3">
-        <img src="{{asset($category->photo)}}" class="img-fluid" alt="">
-        <p class="text-center mt-2">{{$category->name}}</p>
-      </div>
-      @endforeach
-    </div>
-
     
   </div>
 @endsection

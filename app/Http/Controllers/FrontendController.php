@@ -37,4 +37,10 @@ class FrontendController extends Controller
   {
     return view('frontend.cartpage');
   }
+
+  public function filter($subcategory)
+  {
+    $items = Item::where('subcategory_id',$subcategory)->orderBy('id','desc')->get();
+    return view('frontend.filter',compact('items'));
+  }
 }

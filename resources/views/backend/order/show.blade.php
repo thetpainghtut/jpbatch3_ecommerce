@@ -16,25 +16,54 @@
       <div class="col-md-12">
         <div class="tile">
           <div class="title-header">
-            <h2 class="d-inline-block">Item Detail</h2>
+            <h2 class="d-inline-block">Order Detail</h2>
           </div>
-          
-          <div class="card mb-3">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src="{{asset($item->photo)}}" class="card-img" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">{{$item->name}} ({{$item->codeno}})</h5>
-                  <p class="card-text">{{number_format($item->price)}} MMK</p>
-                  <p class="card-text">{{$item->brand->name}}</p>
-                  <p class="card-text">{{$item->subcategory->name}}</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <table class="table table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th>Voucher No</th>
+                <th>Order Date</th>
+                <th>Customer Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{$order->voucherno}}</td>
+                <td>{{$order->orderdate}}</td>
+                <td>{{$order->user->name}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-bordered dataTable">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              @php $i=1; $total=0; @endphp
+              @foreach($order->items as $item)
+              <tr>
+                <td>{{$i++}}</td>
+                <td>{{$item->name}}</td>
+                <td>{{$item->pivot->qty}}</td>
+                <td>{{number_format($item->price)}} Ks</td>
+                <td>{{number_format($item->price*$item->pivot->qty)}} Ks</td>
+              </tr>
+              @php $total += $item->price*$item->pivot->qty; @endphp
+              @endforeach
+              <tr>
+                <td colspan="4">Total</td>
+                <td>{{number_format($total)}} Ks</td>
+              </tr>
+            </tbody>
+          </table>
         
         </div>
       </div>

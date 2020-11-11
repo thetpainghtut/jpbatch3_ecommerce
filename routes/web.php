@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 // Frontend
 Route::get('/', 'FrontendController@main')->name('mainpage');
+Route::get('filter/{subcategory}', 'FrontendController@filter')->name('filter');
 Route::get('itemdetail/{id}', 'FrontendController@itemdetail')->name('itemdetail');
 Route::get('cart', 'FrontendController@cart')->name('cartpage');
 

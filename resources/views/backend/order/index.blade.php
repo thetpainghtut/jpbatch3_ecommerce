@@ -40,7 +40,7 @@
                 <td>{{$order->orderdate}}</td>
                 <td>{{$order->user->name}}</td>
                 <td>
-                  <a href="#" class="btn btn-info">Detail</a>
+                  <a href="{{route('orders.show',$order->id)}}" class="btn btn-info">Detail</a>
                 </td>
               </tr>
               @endforeach
