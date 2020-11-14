@@ -6,6 +6,7 @@ use App\Order;
 use Illuminate\Http\Request;
 use Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -50,25 +51,27 @@ class OrderController extends Controller
             'notes' => 'required'
         ]);
 
-        $lsArr = json_decode($request->ls);
+        DB::transaction(function () use ($request){
+            $lsArr = json_decode($request->ls);
 
-        $total = 0;
-        foreach ($lsArr as $row) {
-            $total += $row->price*$row->qty;
-        }
+            $total = 0;
+            foreach ($lsArr as $row) {
+                $total += $row->price*$row->qty;
+            }
+            // store into order table
+            $order = new Order;
+            $order->voucherno = uniqid();
+            $order->orderdate = date('Y-m-d');
+            $order->total = $total;
+            $order->notes = $request->notes;
+            $order->user_id = Auth::id(); // auth user_id
+            $order->save();
 
-        // store
-        $order = new Order;
-        $order->voucherno = uniqid();
-        $order->orderdate = date('Y-m-d');
-        $order->total = $total;
-        $order->notes = $request->notes;
-        $order->user_id = Auth::id(); // auth user_id
-        $order->save();
-
-        foreach ($lsArr as $row) {
-            $order->items()->attach($row->id,['qty'=>$row->qty]);
-        }
+            // store into order detail table
+            foreach ($lsArr as $row) {
+                $order->items()->attach($row->id,['qty'=>$row->qty]);
+            }
+        });
 
         Alert::success('Complete', 'Your Order Successful!');
 
